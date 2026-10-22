@@ -1,0 +1,36 @@
+# ---- chess-vision config ----------------------------------------------
+# Edit this file instead of hard-coding values in scripts.
+
+camera:
+  # Integer index (0 = /dev/video0) or a device path / GStreamer pipeline string.
+  source: 0
+  width: 1280
+  height: 720
+
+calibration:
+  # INNER corners of the printed checkerboard (a 10x7-square board has 9x6 inner corners)
+  board_cols: 9
+  board_rows: 6
+  square_size_mm: 20.0       # 20 mm fits a landscape letter page. MEASURE your printout and update!
+  min_views: 15
+  output: calib/camera.yaml
+
+board:
+  # ArUco markers taped just outside the 4 corners of the playing area.
+  aruco_dict: DICT_4X4_50
+  # marker id -> which board corner it sits at (from the camera's point of view)
+  marker_ids: {top_left: 0, top_right: 1, bottom_right: 2, bottom_left: 3}
+  warp_size: 800              # warped top-down image is warp_size x warp_size px
+  # Rotate the warped image by 90deg * k so that square a8 ends up top-left.
+  rotate_k: 0
+  output: calib/board.yaml    # saved homography / corner points
+
+detection:
+  # Fraction of each square used for comparison (center crop avoids neighbour pieces leaning in)
+  square_crop: 0.6
+  # A square counts as "changed" if its mean abs difference exceeds this (0-255)
+  change_threshold: 18
+  settle_frames: 10           # frames the image must be stable before analysing a move
+
+dataset:
+  root: data/raw

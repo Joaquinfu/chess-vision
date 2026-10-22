@@ -1,0 +1,9 @@
+.venv/
+__pycache__/
+*.pyc
+tests/out/
+# Large/raw data stays local (back it up to Drive or Hugging Face Hub, not git)
+data/raw/
+data/calib_views/
+data/snapshots/
+# Keep calib/*.yaml in git - small and useful to teammates

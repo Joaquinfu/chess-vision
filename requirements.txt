@@ -1,0 +1,11 @@
+# Core (phase 1 - no ML yet)
+numpy
+pyyaml
+chess            # python-chess: rules, legal moves, PGN
+# OpenCV: on the Jetson use the system/JetPack build if `python3 -c "import cv2; cv2.aruco"` works.
+# Otherwise (or on a laptop/PC) install:
+#   pip install opencv-contrib-python
+
+# Phase 2 (training on the RTX 5070 PC, NOT needed on the Jetson yet):
+#   torch / torchvision  (CUDA build)
+#   ultralytics          (only if we go the YOLO route)
